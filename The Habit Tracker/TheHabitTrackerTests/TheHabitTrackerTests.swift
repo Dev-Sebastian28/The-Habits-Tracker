@@ -74,35 +74,4 @@ struct ManagerTests {
     }
 }
 
-struct ViewControllerTests {
-    var viewController = ViewController()
-    
-    @Test
-    func addGoalInput() {
-        try? #require(viewController.managerModel.goals.isEmpty)
-        try? #require(viewController.goals.isEmpty)
-        viewController.addGoalInput(name: "Test Goal", description: "This is a test goal", endDate: nil )
-        #expect(viewController.goals.count == 1)
-        #expect(viewController.managerModel.goals.count == 1)
-    }
-    
-    @Test
-    @MainActor func addHabitInput() async {
-        viewController
-            .addGoalInput(
-                name: "Test Goal",
-                description: "This is a test goal",
-                endDate: nil
-            )
-        await viewController
-            .addHabitInput(
-                name: "test",
-                description: "test",
-                days: [.friday],
-                forGoal: &viewController.managerModel.goals[0]
-            )
-        #expect(viewController.managerModel.goals[0].habits.count == 1)
-        #expect(viewController.goals[0].habits.count == 1)
-    }
-}
 

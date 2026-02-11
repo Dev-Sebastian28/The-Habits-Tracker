@@ -21,7 +21,6 @@ struct AIView: View {
         }
     }
 
-    
     var body: some View {
         NavigationStack {
             ZStack {

@@ -21,7 +21,7 @@ struct The_Habit_TrackerApp: App {
                     NavigationStack(path: $navigationPath.path) {
                         WelcomeFirstView()
                             .navigationDestination(for: FormRoute.self) { Hashable in
-                                switch Hashable{
+                                switch Hashable {
                                 case .AccountFormView:
                                     AccountFormSecondView()
                                 case .GoalFormView:

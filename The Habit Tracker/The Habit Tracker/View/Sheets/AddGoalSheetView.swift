@@ -5,7 +5,7 @@
 //  Created by Sebastian Garcia on 10/01/26.
 //
 import SwiftUI
-
+import Foundation
 
 struct AddGoalSheetView:View {
     @Environment(ViewController.self) private var vc
@@ -131,3 +131,5 @@ struct AddGoalSheetView:View {
         }
     }
 }
+
+
