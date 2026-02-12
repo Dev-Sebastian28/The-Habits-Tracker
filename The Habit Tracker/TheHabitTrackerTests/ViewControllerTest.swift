@@ -10,7 +10,7 @@ import Testing
 
 
 struct ViewControllerTests {
-    var viewController = ViewController()
+    var viewController = ViewModel()
     
     @Test
     func addGoalInput() {

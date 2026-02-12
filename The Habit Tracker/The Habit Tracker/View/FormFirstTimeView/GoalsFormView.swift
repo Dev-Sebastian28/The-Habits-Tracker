@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoalsFormView: View {
     @Environment(navigationFormViewModel.self) private var navigation
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @State private var addGoalSheet: Bool = false
     @State private var animation: Bool = false
     var body: some View {
@@ -132,6 +132,6 @@ struct GoalsFormView: View {
 
 #Preview {
     GoalsFormView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
         .environment(navigationFormViewModel.init())
 }

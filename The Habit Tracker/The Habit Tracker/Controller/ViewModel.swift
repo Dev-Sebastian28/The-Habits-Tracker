@@ -10,7 +10,7 @@ import Observation
 
 
 @Observable
-class ViewController {
+class ViewModel {
     var managerModel = ManagerModel()
     var goals: [Goal] = []
     var userData: UserInfModel = .init(email: "", password: "", username: "", userAage: nil, userCountry: nil, userOccupation: nil, isPremium: nil, userImage: nil)

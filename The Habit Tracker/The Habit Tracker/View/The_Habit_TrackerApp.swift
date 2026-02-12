@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct The_Habit_TrackerApp: App {
     @State private var navigationPath = navigationFormViewModel()
-    @State var vc = ViewController()
+    @State var vc = ViewModel()
     @State private var isFirstTime: Bool = true
     
     var body: some Scene {

@@ -10,7 +10,7 @@ import SwiftUI
 struct AccountFormSecondView: View {
     @State private var animateImage: Bool = false
     @Environment(navigationFormViewModel.self) private var navigation
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @State private var username: String = ""
     @State private var userAge: String = ""
     @State private var userOccupation: String = ""
@@ -122,6 +122,6 @@ private struct BlueprintTextField: View {
 
 #Preview {
     AccountFormSecondView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
         .environment(navigationFormViewModel.init())
 }

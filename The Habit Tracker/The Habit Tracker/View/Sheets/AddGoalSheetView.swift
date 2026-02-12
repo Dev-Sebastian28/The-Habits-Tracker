@@ -8,7 +8,7 @@ import SwiftUI
 import Foundation
 
 struct AddGoalSheetView:View {
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @Binding var showSheet: Bool
     @State private var startDate: Date = .now
     @State private var endDate: Date = .now

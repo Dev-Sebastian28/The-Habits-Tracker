@@ -8,7 +8,7 @@
 import SwiftUI
 // Primera Vista
 struct WelcomeFirstView: View {
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @Environment(navigationFormViewModel.self) private var navigation
     var body: some View {
         VStack {
@@ -70,7 +70,7 @@ struct WelcomeFirstView: View {
 
 #Preview {
     WelcomeFirstView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
         .environment(navigationFormViewModel.init())
 }
 

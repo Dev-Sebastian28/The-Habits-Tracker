@@ -41,5 +41,5 @@ struct HomeTabView: View {
 
 #Preview {
     HomeTabView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
 }

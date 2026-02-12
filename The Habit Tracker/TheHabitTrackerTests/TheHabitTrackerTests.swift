@@ -8,9 +8,6 @@
 import Testing
 @testable import The_Habit_Tracker
 
-struct TheHabitTrackerTests {
-    
-}
 
 struct ManagerTests {
     var manager = ManagerModel()

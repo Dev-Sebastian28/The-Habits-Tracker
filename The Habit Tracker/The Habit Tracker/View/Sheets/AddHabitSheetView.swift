@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddHabitSheetView:View {
     let daysofWeek: [(String, Daysofweek)] = [("Monday", .monday), ("Tuesday", .tuesday), ("Wednesday", .wednesday), ("Thursday", .thursday), ("Friday", .friday), ("Saturday", .saturday), ("Sunday", .sunday)]
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @State var index: Int
     @Binding var showSheet: Bool
     @State private var habitName: String = ""

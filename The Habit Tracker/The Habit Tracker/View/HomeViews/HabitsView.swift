@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct HabitsView: View {
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
@@ -127,5 +127,5 @@ private func buttonIcon (title: String, icon: String, color: Color) -> some View
 
 #Preview {
     HabitsView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
 }

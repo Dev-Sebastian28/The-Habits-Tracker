@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct AIView: View {
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @State var isFirstTime: Bool = false
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: nil, alignment: nil),
@@ -111,7 +111,7 @@ struct AIView: View {
 #Preview {
     
     AIView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
     
 }
 

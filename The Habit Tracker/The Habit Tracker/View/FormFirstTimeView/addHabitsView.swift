@@ -11,141 +11,101 @@ import SwiftUI
 struct AddHabitsView: View {
     @State var firstAnimation: Bool = false
     @State private var showAddHabit: Bool = false
-    @Environment(ViewController.self) private var vc
+    @Environment(ViewModel.self) private var vc
     @Environment(navigationFormViewModel.self) private var navigation
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    navigation.goToHome()
-                } label: {
-                    Text("Go to Home")
-                        .foregroundStyle(.green)
-                        .frame(width: 110, height: 30)
-                        .background(.green.opacity(0.3))
-                        .cornerRadius(500)
-                }.padding()
-            }
-        }
-        ScrollView {
-            ForEach(vc.goals.enumerated(), id: \.element.id) {
-                index,
-                goal in
-                VStack{
-                    goalHeader(goal.name)
-                    
-                    ForEach(vc.goals[index].habits) { habit in
-                        HabitRow(title: habit.name)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                    .fill(.gray.opacity(0.1))
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
+        ZStack {
+            VStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .strokeBorder(style: .init())
+                    .frame(width: 300, height: 200)
+                    .shadow(color: .gray, radius: 2, x: 0, y: 4)
+                    .overlay(alignment: .top) {
+                        Text("wadwadawd")
+                            .font(.title2)
+                            .bold()
+                            .padding(.top, 14)
                     }
-                    
-                    
-                    
-                    HStack{
-                        Button {
-                            showAddHabit.toggle()
-                           
-                        } label: {
-                            HStack{
-                                Image(systemName: "plus")
-                                    .font(.system(size: 30))
-                                    .foregroundStyle(Color.green)
-                                    .frame(width: 50, height: 50)
-                                    .background(Color.green.opacity(0.1))
+                    .overlay(alignment: .leading) {
+                        VStack (spacing: 20){
+                           HStack {
+                               Image(systemName: "circle.dotted")
+                                   .padding(.leading, 10)
+
+                               
+                               Text("Run 5 km")
+                                   .fontWeight(.light)
+                                   .frame(width: 100, height: 28)
+                                   .underline()
+                                   .cornerRadius(9)
+                               
+                               Spacer()
+                               
+                               HStack(spacing: 8) {
+                                   ForEach(1..<4) { _ in
+                                       Circle()
+                                           .frame(width: 28, height: 28)
+                                           .foregroundStyle(.gray.opacity(0.2))
+                                           .overlay(alignment: .center) {
+                                               Text("d")
+                                           }
+                                   }
+                               }
+                               .padding(.trailing, 16)
+
+                           }
+                            Rectangle()
+                                .frame(width: 240, height: 0.34)
+                                .fontWeight(.thin)
                                 
-                                Text ("Create New")
-                                    .padding(10)
-                                    .foregroundStyle(Color.black)
-                                
-                            }.background(Color.green.opacity(0.1))
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                        }.sheet(isPresented: $showAddHabit) {
-                            AddHabitSheetView(index: index, showSheet: $showAddHabit)
                         }
                         
-                        Button {
-                            if  goal.habits.isEmpty {
-                                
-                            } else {
-                                vc.deletaLastHabitInput(id: goal.id, forGoalIndex: index)
-                            }
-                        } label: {
-                            HStack{
-                                Image(systemName: "plus")
-                                    .font(.system(size: 30))
-                                    .foregroundStyle(Color.red)
-                                    .frame(width: 50, height: 50)
-                                    .background(Color.red.opacity(0.1))
-                                
-                                Text ("Delate Last")
-                                    .padding(10)
-                                    .foregroundStyle(Color.black)
-                                
-                            }.background(Color.red.opacity(0.1))
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                        }
+                    }
+                
+                    
+                HStack (spacing: 40){
+                    // Add Habit Button
+                    Button {
+                        
+                    } label: {
+                        buttonView(title: "Add Habit", color: .green)
+                    }
+                    
+                    
+                    // remove last Habit Button
+                    Button {
+                        
+                    } label: {
+                        buttonView(title: "Remove Last", color: .red)
                     }
                 }
-                .padding()
-                .frame(width: 380)
-                .background(
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .fill(.black.opacity(0.1)))
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-            }
-        }.task {
-            try? await Task.sleep(for: .seconds(2))
-            withAnimation {
-                firstAnimation.toggle()
-                vc.fetchGoals()
+                .foregroundStyle(.black)
+                .padding(.top, -30)
             }
         }
-        if firstAnimation {
-            VStack{
-                Text("Now is the time to make a new habit that will help you achieve your goals!")
-                    .font(Font.title.bold())
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .background(Color.gray.opacity(0.2))
-            }.transition(.move(edge: .bottom))
-            
-        }
-    }
-    
-    private func goalHeader(_ name: String) -> some View {
-        Text(name)
-            .font(Font.title2.bold())
-            .padding()
-            .frame(width: 370, height: 50)
-            .background(Color.gray.opacity(0.5))
-            .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
-private struct HabitRow: View {
-    let title: String
-    var body: some View {
-        Text(title)
-            .font(.title3)
-            .padding()
-            .frame(width: 340, height: 50, alignment: .center)
-            .background(
-                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                    .fill(.green.opacity(0.2))
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 5))
-    }
+
+private func buttonView(title: String, color: Color) -> some View {
+    RoundedRectangle(cornerRadius: 15)
+        .fill(color)
+        .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color.black, lineWidth: 1)
+        )
+        .frame(width: 140, height: 40)
+        .overlay(alignment: .center) {
+            Text(title)
+                .bold()
+        }
 }
+
 
 #Preview {
     AddHabitsView()
-        .environment(ViewController.init())
+        .environment(ViewModel.init())
         .environment(navigationFormViewModel.init())
 }
+
